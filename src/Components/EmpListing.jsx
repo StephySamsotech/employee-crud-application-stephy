@@ -28,7 +28,17 @@ const EmpListing = () => {
                 console.error('Error deleting employee:', error);
             });
     }
-
+    const setData = (data) => {
+        let { id, name, department,age,gender,salary,yearsOfExperience } = data;
+        localStorage.setItem('EmpId', id);
+        localStorage.setItem('Name', name);
+        localStorage.setItem('Department', department);
+        localStorage.setItem('Age', age);
+        localStorage.setItem('Gender', gender);
+        localStorage.setItem('Salary', salary);
+        localStorage.setItem('Experience', yearsOfExperience);
+     
+    }
     useEffect(() => {
         getData();
     }, []);
@@ -69,7 +79,7 @@ const EmpListing = () => {
                                     <td>{data.department}</td>
                                     <td>
                                         <Link to='/Empupdate'>
-                                            <button className="btn btn-success">Edit</button>
+                                            <button onClick={() => setData(data)} className="btn btn-success">Edit</button>
                                         </Link>
                                         <button onClick={() => onDelete(data.id)} className="btn btn-danger">Delete</button>
                                         <button onClick={() => handleDetailsClick(data)} className="btn btn-primary">Details</button>
